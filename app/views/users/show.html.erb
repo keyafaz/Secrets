@@ -1,0 +1,38 @@
+<ul class="w3-opacity w3-teal w3-navbar ">
+	<li><h1 class="w3-text-shadow w3-padding">Secrets</h1></li>
+	<li class="w3-right w3-padding w3-tiny"><a href="/users/<%=@user.id %>/edit">Edit Profile</a></li>
+	<li class="w3-right w3-padding w3-tiny"><a href="/secrets">Like a secret!</a></li>
+	<li class="w3-right w3-padding"><h5>Welcome <%= @user.name %></h5></li>
+</ul>
+<div class="w3-container w3-margin-bottom">
+	<form class="w3-form w3-third" action="/secrets" method="post">
+		<input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+		<input type="hidden" name="userid" value="<%= @user.id %>">
+		<label class="w3-label w3-text-black" for="content">New Secret</label>
+		<textarea class="w3-input" name="content"></textarea>
+		<input class="w3-btn w3-light-grey w3-hover w3-margin-top w3-right" type="submit" value="Create Secret">
+	</form>
+</div>
+<div class="w3-half w3-padding w3-margin-top">
+	<h5 class="w3-text-shadow ">My Secrets</h5>
+	<div >
+		<%  @user.secrets.each do |secret| %>
+			<h5 ><%= secret.content %></h5>
+			<p class="w3-opacity w3-show-inline-block"><%= secret.likes.count %>  likes</p>
+			<form  class="w3-form w3-padding w3-show-inline-block" action="/secrets/<%= secret.id %>" method="post">
+				<input type="hidden" name="_method" value="delete">
+				<input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+				<input type="hidden" name="userid" value="<%= secret.user.id %>">
+				<input class="w3-btn w3-light-grey w3-hover-red w3-round-large w3-margin-bottom"" type="submit" value="Delete">
+			</form>
+
+		<% end %>
+	</div>
+</div>
+<div class="w3-half w3-padding w3-margin-top">
+	<h5 class="w3-text-shadow">Secrets Liked</h5>
+	<% @secrets_liked.each do |secret| %>
+		<h5><%= secret.content %></h5>
+		<p class="w3-opacity w3-show-inline-block"><%= secret.likes.count %>  likes</p>
+	<% end %>
+</div>

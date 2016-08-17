@@ -1,0 +1,14 @@
+<div class="w3-container w3-light-grey w3-navbar">
+	<h1 class="w3-text-shadow w3-opacity w3-text-grey">Log In</h1>
+	<h5 class="w3-right w3-padding w3-small"><a href="/users/new">Sign up!</a></h5>
+</div>
+
+<form class="w3-form w3-third" action="/login" method="post">
+    <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+
+	<label class="w3-label" for="email">Email</label>
+	<input class="w3-input" type="email" name="email">
+	<label class="w3-label" for="password">Password</label>
+	<input class="w3-input" type="password" name="password">
+	<input class="w3-btn w3-light-grey w3-hover w3-margin-top w3-right" type="submit" value="Log In">
+</form>

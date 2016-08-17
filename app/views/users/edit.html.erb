@@ -1,0 +1,22 @@
+<div class="w3-container w3-light-grey">
+	<h1 class="w3-text-shadow w3-opacity w3-text-grey">Edit Profile</h1>
+</div>
+
+<form class="w3-form w3-third w3-margin-bottom" action="/users/<%=@user.id %>" method="post">
+	<input type="hidden" name="_method" value="patch">
+    <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+	<label class="w3-label" for="name">Name</label>
+	<input class="w3-input" type="text" name="name" value="<%= @user.name %>">
+	<label class="w3-label" for="email">Email</label>
+	<input class="w3-input" type="email" name="email" value="<%= @user.email %>">
+	<label class="w3-label" for="password">Password</label>
+	<input class="w3-input" type="password" name="password">
+	<label class="w3-label" for="password_confirmation">Password Confirmation</label>
+	<input class="w3-input" type="password" name="password_confirmation">
+	<input class="w3-btn w3-light-grey w3-hover w3-margin-top w3-right" type="submit" value="Update">
+</form>
+<form  class="w3-form w3-padding" action="/users/<%= @user.id %>" method="post">
+	<input type="hidden" name="_method" value="delete">
+	<input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+	<input class="w3-input w3-red w3-hover" type="submit" value="Delete Account">
+</form>
